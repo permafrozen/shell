@@ -11,7 +11,7 @@
   };
 
   outputs =
-    inputs@{ flake-parts, quickshell, ... }:
+    inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
       perSystem =
@@ -20,20 +20,13 @@
           system,
           ...
         }:
-        let
-
-          quickshell-pkg = quickshell.packages.${system}.default;
-        in
         {
-          packages.default = pkgs.hello;
-          # QML-Imports don't work if installed in a shell
-
-          # devShells.default = pkgs.mkShell {
-          #   packages = [
-          #     quickshell-pkg
-          #     pkgs.qt6.qtdeclarative
-          #   ];
-          # };
+          packages.default = pkgs.callPackage ./nix/package.nix {
+            quickshell = inputs.quickshell.packages.${system}.default;
+          };
+          devShells.default = pkgs.callPackage ./nix/shell.nix {
+            quickshell = inputs.quickshell.packages.${system}.default;
+          };
         };
     };
 }
