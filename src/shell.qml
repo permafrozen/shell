@@ -1,5 +1,7 @@
 import Quickshell
+import QtQuick
+import "bar" as BarComponents
 
 Scope {
-    Bar {}
+    BarComponents.Bar {}
 }
