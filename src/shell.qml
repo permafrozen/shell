@@ -1,7 +1,9 @@
 import Quickshell
 import QtQuick
-import "bar" as BarComponents
+import "bar"
+import "notify"
 
 Scope {
-    BarComponents.Bar {}
+    Bar {}
+    Notification {}
 }
