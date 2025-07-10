@@ -10,6 +10,17 @@ Singleton {
 
     NotificationServer {
         id: notificationServer
+
+        actionIconsSupported: true
+        actionsSupported: true
+        bodyHyperlinksSupported: true
+        bodyImagesSupported: true
+        bodyMarkupSupported: true
+        bodySupported: true
+        imageSupported: true
+        keepOnReload: true
+        persistenceSupported: true
+
         onNotification: notification => {
             notification.tracked = true;
         }

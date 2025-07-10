@@ -1,10 +1,12 @@
 import Quickshell
 import QtQuick
+import "../util"
 
 Scope {
     PanelWindow {
         id: panel
         visible: false
+        color: Theme.base00
         anchors {
             left: true
             right: true
@@ -30,6 +32,7 @@ Scope {
             id: notifyBody
             anchors.fill: parent
             text: "No Notification Yet"
+            color: Theme.base05
         }
     }
 }
