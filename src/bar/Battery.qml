@@ -15,11 +15,15 @@ Item {
         property int lenght: UPower.devices.values.length
 
         function getBatteryPercentage() {
-            for (var i = 0; i <= lenght - 1; i++) {
-                if (devices[i] != null && devices[i].isLaptopBattery) {
-                    return Math.ceil(devices[i].percentage * 100);
+            let batteryPercentage = "";
+
+            [...UPower.devices.values].forEach(device => {
+                if (device != null && device.isLaptopBattery) {
+                    batteryPercentage = device.percentage * 100;
                 }
-            }
+            });
+
+            return batteryPercentage;
         }
 
         text: getBatteryPercentage() + "%"
