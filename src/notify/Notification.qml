@@ -7,6 +7,7 @@ Scope {
         id: panel
         visible: false
         color: Theme.base00
+        implicitHeight: notifyBody.implicitHeight
         anchors {
             left: true
             right: true
@@ -16,7 +17,7 @@ Scope {
         Component.onCompleted: {
             NotificationServer.server.onNotification.connect(notif => {
                 console.log(notif.body);
-                notifyBody.text = notif.body;
+                notifyBody.text = `[${notif.appName}]: ${notif.body}`;
                 panel.visible = true;
             });
         }
@@ -31,7 +32,6 @@ Scope {
         Text {
             id: notifyBody
             anchors.fill: parent
-            text: "No Notification Yet"
             color: Theme.base05
         }
     }
