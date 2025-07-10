@@ -1,57 +1,43 @@
 import QtQuick
+import QtQuick.Layouts
 import Quickshell
-import Quickshell.Hyprland
-import "../util" as Util
+import "../util"
 
 Scope {
     id: root
-
     Variants {
         model: Quickshell.screens
-
         PanelWindow {
+            color: "transparent"
             property var modelData
-            color: Util.Theme.base00
-
             screen: modelData
+            implicitHeight: 30
+
             anchors {
                 left: true
                 top: true
                 right: true
             }
-            implicitHeight: 25
 
-            Text {
-                color: Util.Theme.base05
-                text: Qt.formatDateTime(clock.date, "hh:mm:ss dd-MM-yyyy")
-                anchors.centerIn: parent
-
-                SystemClock {
-                    id: clock
-                    precision: SystemClock.Seconds
-                }
+            // Background Color
+            Rectangle {
+                anchors.fill: parent
+                color: Theme.base00
             }
-            Row {
-                Repeater {
-                    model: Hyprland.workspaces
-                    Text {
-                        function getWorkspace(workspaceLabel, isFocused) {
-                            var workspaceString = "";
-                            if (isFocused) {
-                                workspaceString = `[${workspaceLabel}]`;
-                            } else
-                                workspaceString = `-${workspaceLabel}-`;
-                            return workspaceString;
-                        }
 
-                        property list<HyprlandWorkspace> ws_list: Hyprland.workspaces.values
-                        required property int index
-                        text: getWorkspace(ws_list[index].id, ws_list[index].focused)
+            // Modules inside the Bar
+            RowLayout {
+                anchors.fill: parent
+                uniformCellSizes: true
 
-                        leftPadding: 10
-                        rightPadding: 10
-                        color: Util.Theme.base05
-                    }
+                Workspaces {
+                    textColor: Theme.base05
+                }
+                Clock {
+                    textColor: Theme.base05
+                }
+                Battery {
+                    textColor: Theme.base05
                 }
             }
         }
