@@ -1,3 +1,4 @@
+pragma ComponentBehavior: Bound
 import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Layouts
@@ -6,20 +7,34 @@ Item {
     id: root
     required property color textColor
 
-    implicitWidth: layout.implicitWidth
-    implicitHeight: layout.implicitHeight
+    implicitHeight: parent.implicitHeight
 
     Layout.fillWidth: false
     Layout.alignment: Qt.AlignLeft
 
-    RowLayout {
+    Item {
         id: layout
-        anchors.fill: parent
-
+        implicitWidth: parent.implicitWidth
+        implicitHeight: parent.implicitHeight
         Repeater {
             model: Hyprland.workspaces
             Text {
                 id: workspaceText
+                visible: false
+                x: index * width
+                Behavior on x {
+                    SmoothedAnimation {
+                        velocity: 400
+                    }
+                }
+
+                // wait a little bit to avoid visual glitch when workspace before it is being removed
+                Timer {
+                    interval: 1
+                    running: true
+                    onTriggered: workspaceText.visible = true
+                }
+
                 function getWorkspace(workspace) {
                     if (workspace == null) {
                         return "";
@@ -37,7 +52,6 @@ Item {
                 property list<HyprlandWorkspace> ws_list: Hyprland.workspaces.values
                 required property int index
                 text: getWorkspace(ws_list[index])
-                y: 5
 
                 leftPadding: 10
                 rightPadding: 10
