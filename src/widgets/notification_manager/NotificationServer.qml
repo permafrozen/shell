@@ -11,6 +11,10 @@ Singleton {
     NotificationServer {
         id: notificationServer
 
+        function clearNotifications() {
+            [...notificationServer.trackedNotifications.values].forEach(trackedNotif => trackedNotif.tracked = false);
+        }
+
         actionIconsSupported: true
         actionsSupported: true
         bodyHyperlinksSupported: true

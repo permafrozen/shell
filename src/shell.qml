@@ -1,9 +1,11 @@
 import Quickshell
 import QtQuick
-import "bar"
-import "notify"
+
+// Top Level Widgets
+import qs.widgets.statusbar
+import qs.widgets.notification_manager
 
 Scope {
-    Bar {}
-    Notification {}
+    Statusbar {}
+    NotificationPopup {}
 }

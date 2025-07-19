@@ -1,7 +1,8 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
-import "../util"
+
+import qs.utils
 
 Scope {
     id: root
@@ -30,13 +31,13 @@ Scope {
                 anchors.fill: parent
                 uniformCellSizes: true
 
-                Workspaces {
+                HyprSpaces {
                     textColor: Theme.base05
                 }
-                Clock {
+                DateTime {
                     textColor: Theme.base05
                 }
-                Battery {
+                BatteryIndicator {
                     textColor: Theme.base05
                 }
             }
