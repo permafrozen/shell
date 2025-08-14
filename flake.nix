@@ -15,11 +15,7 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
       perSystem =
-        {
-          pkgs,
-          system,
-          ...
-        }:
+        { pkgs, system, ... }:
         {
           packages.default = pkgs.callPackage ./nix/package.nix {
             quickshell = inputs.quickshell.packages.${system}.default;

@@ -31,7 +31,7 @@ Scope {
                 anchors.fill: parent
                 uniformCellSizes: true
 
-                HyprSpaces {
+                Workspaces {
                     textColor: Theme.base05
                 }
                 DateTime {

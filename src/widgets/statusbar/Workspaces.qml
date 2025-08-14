@@ -10,6 +10,19 @@ Item {
     Layout.fillWidth: false
     Layout.alignment: Qt.AlignLeft
 
+    Text {
+        id: focusedWorkspaceIndicator
+        text: "[ ]"
+        color: root.textColor
+
+        Behavior on x {
+            SmoothedAnimation {
+                velocity: 200
+                duration: 200
+            }
+        }
+    }
+
     Repeater {
         model: Hyprland.workspaces
 
@@ -17,13 +30,15 @@ Item {
             id: workspaceText
             required property int index
             property list<HyprlandWorkspace> ws_list: Hyprland.workspaces.values
+            property int box_padding: 10
+            property int box_index: index * 50
 
             visible: false
             text: getWorkspace(ws_list[index])
-            leftPadding: 10
-            rightPadding: 10
+            leftPadding: box_padding
+            rightPadding: box_padding
             color: root.textColor
-            x: index * 50 //hardcoded value instead of width -> fix bug when numbers enter two digits
+            x: box_index
 
             function getWorkspace(workspace) {
                 if (workspace == null) {
@@ -31,12 +46,10 @@ Item {
                 }
 
                 if (workspace.focused === true) {
-                    swipeDown.running = true;
-                    swipeUp.running = true;
-                    return `[${workspace.id}]`;
-                } else {
-                    return ` ${workspace.id} `;
+                    focusedWorkspaceIndicator.x = box_index + box_padding;
                 }
+
+                return ` ${workspace.id} `;
             }
 
             // wait a little bit to avoid visual glitch when workspace are created, after the ones before are being removed
@@ -49,7 +62,7 @@ Item {
             Behavior on x {
                 SmoothedAnimation {
                     velocity: 200
-                    duration: 100
+                    duration: 200
                 }
             }
 
@@ -57,7 +70,7 @@ Item {
                 target: workspaceText
                 from: 0
                 to: 1
-                duration: 200
+                duration: 350
                 running: true
                 easing.type: Easing.InQuad
             }
