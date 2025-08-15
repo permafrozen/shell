@@ -6,6 +6,7 @@ import qs.utils
 
 Scope {
     id: root
+    Background {}
     Variants {
         model: Quickshell.screens
         PanelWindow {
@@ -18,12 +19,6 @@ Scope {
                 left: true
                 top: true
                 right: true
-            }
-
-            // Background Color
-            Rectangle {
-                anchors.fill: parent
-                color: Theme.base00
             }
 
             // Modules inside the Bar
