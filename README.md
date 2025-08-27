@@ -1,4 +1,4 @@
-# schnell
+# shell
 desktop shell written using quick-shell
 
 ## Thanks to

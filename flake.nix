@@ -1,5 +1,5 @@
 {
-  description = "Description for the project";
+  description = "Desktop Shell written with QML using Quickshell";
 
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
