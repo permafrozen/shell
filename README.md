@@ -1,5 +1,10 @@
 # shell
-desktop shell written using quick-shell
+Desktop shell written using quick-shell, intended to be used with a hyprland.
+
+## dependencies
+
+For the shell to work as intended, the following services/packages are needed:
+- upower
 
 ## Thanks to
 

@@ -6,7 +6,7 @@ import qs.utils
 
 Item {
     id: root
-    required property ShellScreen screen;
+    required property ShellScreen screen
 
     Background {}
     PanelWindow {
