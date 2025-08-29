@@ -12,7 +12,6 @@ Item {
     Text {
         id: battery
         property var devices: UPower.devices.values
-        property int lenght: UPower.devices.values.length
 
         function getBatteryPercentage() {
             let batteryPercentage = "";
