@@ -28,11 +28,20 @@ Item {
             Workspaces {
                 textColor: Theme.base05
             }
+
             DateTime {
                 textColor: Theme.base05
             }
-            BatteryIndicator {
-                textColor: Theme.base05
+
+            RowLayout {
+                Layout.alignment: Qt.AlignRight
+                spacing: 25
+                Resources {
+                    textColor: Theme.base05
+                }
+                BatteryIndicator {
+                    textColor: Theme.base05
+                }
             }
         }
     }

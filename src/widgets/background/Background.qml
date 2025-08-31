@@ -8,8 +8,8 @@ Item {
     PanelWindow {
         screen: root.screen
         exclusionMode: ExclusionMode.Ignore
-				WlrLayershell.layer: WlrLayer.Background
-				WlrLayershell.namespace: "shell:background"
+        WlrLayershell.layer: WlrLayer.Background
+        WlrLayershell.namespace: "shell:background"
 
         anchors {
             left: true

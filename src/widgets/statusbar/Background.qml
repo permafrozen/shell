@@ -32,11 +32,13 @@ Variants {
         Shape {
             id: leftCorner
             y: 30
+            asynchronous: true
+            fillMode: Shape.PreserveAspectFit
+            preferredRendererType: Shape.CurveRenderer
             width: 20
             height: 20
             ShapePath {
                 strokeWidth: 0
-                strokeColor: Theme.base00
                 fillColor: Theme.base00
                 startX: 0
                 startY: 0
@@ -60,11 +62,13 @@ Variants {
             id: rightCorner
             x: background.width - this.width
             y: 30
+            asynchronous: true
+            fillMode: Shape.PreserveAspectFit
+            preferredRendererType: Shape.CurveRenderer
             width: 20
             height: 20
             ShapePath {
                 strokeWidth: 0
-                strokeColor: Theme.base00
                 fillColor: Theme.base00
                 startX: 0
                 startY: 0

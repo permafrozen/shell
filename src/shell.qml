@@ -13,17 +13,17 @@ ShellRoot {
         model: Quickshell.screens
 
         Scope {
-          id: scope
+            id: scope
             property var modelData
 
             Statusbar {
-              screen: scope.modelData
+                screen: scope.modelData
             }
 
             NotificationPopup {}
 
             Background {
-              screen: scope.modelData
+                screen: scope.modelData
             }
         }
     }

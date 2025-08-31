@@ -7,7 +7,6 @@ Item {
     required property color textColor
     implicitWidth: battery.implicitWidth
     implicitHeight: battery.implicitHeight
-    Layout.alignment: Qt.AlignRight
 
     Text {
         id: battery
@@ -25,7 +24,7 @@ Item {
             return batteryPercentage;
         }
 
-        text: getBatteryPercentage() + "%"
+        text: `BAT: ${getBatteryPercentage()}%`
         color: root.textColor
     }
 }

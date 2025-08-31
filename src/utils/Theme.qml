@@ -7,7 +7,7 @@ import QtQuick
 Singleton {
     id: root
 
-    // Assign Properties from the read in pallete.json (stylix generated file)
+    // Assign Properties from the read in palette.json (stylix generated file)
     readonly property color base00: json.base00 ? `#${json.base00}` : "#282c34"
     readonly property color base01: json.base01 ? `#${json.base01}` : "#3f4451"
     readonly property color base02: json.base02 ? `#${json.base02}` : "#4f5666"
