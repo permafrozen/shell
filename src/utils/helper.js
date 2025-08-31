@@ -22,11 +22,11 @@ function getCpuUsage(prevStat, currStat) {
   var idleDelta = currArray[4] - prevArray[4];
   var cpuUsed = cpuDelta - idleDelta;
   var cpuUsage = cpuUsed / cpuDelta * 100;
-  return cpuUsage.toFixed(1);
+  return isNaN(cpuUsage) ? 0 : cpuUsage.toFixed(0);
 }
 
 function getCpuTimeArray(raw) {
-  return raw.slice(0, raw.indexOf("cpu0")).replace(/  /, " ").split(" ");
+  return raw.trim().slice(0, raw.indexOf("cpu0")).replace(/\s+/, " ").split(" ");
 }
 
 function getCpuTimeSum(cpuTimeArray) {
@@ -35,4 +35,19 @@ function getCpuTimeSum(cpuTimeArray) {
     sum += parseInt(cpuTimeArray[i]);
   }
   return sum;
+}
+
+// Returns Memory usage in percent from the raw string provided (/proc/meminfo)
+// 2 -> MemAvailable
+function getMemUsage(meminfo) {
+  var parsedMemory = meminfo.trim().split("\n").map(line => {
+    const [key, value, unit] = line.trim().split(/\s+/)
+    return { key: key.replace(":", ""), value: Number(value), unit }
+  })
+
+  var memAvailable = parsedMemory[2].value;
+  var memTotal = parsedMemory[0].value;
+  var memUsed = memTotal - memAvailable;
+  var memUsage = memUsed / parsedMemory[0].value * 100;
+  return isNaN(cpuUsage) ? 0 : memUsage.toFixed(0);
 }

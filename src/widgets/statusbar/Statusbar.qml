@@ -36,7 +36,10 @@ Item {
             RowLayout {
                 Layout.alignment: Qt.AlignRight
                 spacing: 25
-                Resources {
+                MemUsage {
+                    textColor: Theme.base05
+                }
+                CpuUsage {
                     textColor: Theme.base05
                 }
                 BatteryIndicator {

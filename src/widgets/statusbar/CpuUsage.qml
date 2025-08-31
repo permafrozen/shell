@@ -4,12 +4,12 @@ import qs.utils
 Item {
     id: root
     required property color textColor
-    implicitWidth: resources.implicitWidth
-    implicitHeight: resources.implicitHeight
+    implicitWidth: cpuUsageText.implicitWidth
+    implicitHeight: cpuUsageText.implicitHeight
 
     // TODO: CHANGE GENERAL BAR LAYOUT
     Text {
-        id: resources
+        id: cpuUsageText
         color: root.textColor
         text: `CPU: ${System.cpuUsage}%`
     }
