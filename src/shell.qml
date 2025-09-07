@@ -7,8 +7,11 @@ import QtQuick
 import qs.widgets.statusbar
 import qs.widgets.notification_manager
 import qs.widgets.background
+import qs.widgets.runner
 
 ShellRoot {
+    Runner {}
+
     Variants {
         model: Quickshell.screens
 
