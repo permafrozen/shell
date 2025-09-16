@@ -63,7 +63,12 @@ Item {
                         id: text
                         color: Theme.base05
                         required property var modelData
-                        text: modelData.name
+                        text: {
+                            if (modelData.name.length < 27) {
+                                modelData.name;
+                            } else
+                                return modelData.name.slice(0, 24) + "...";
+                        }
                     }
                 }
             }
