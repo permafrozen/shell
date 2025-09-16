@@ -30,6 +30,7 @@ Item {
                     id: search
                     autoScroll: false
                     color: Theme.base05
+                    focus: true
 
                     Layout.fillWidth: true
                     Layout.topMargin: 20
@@ -39,19 +40,30 @@ Item {
                     Keys.onEscapePressed: {
                         window.visible = false;
                     }
+
+                    onAccepted: {
+                        list.model.values[0].execute();
+                        window.visible = false;
+                    }
                 }
 
                 ListView {
+                    id: list
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     Layout.margins: 20
                     model: ScriptModel {
-                        values: DesktopEntries.applications.values.map(f => "hawk")
+                        values: DesktopEntries.applications.values.map(entry => {
+                            if (entry.name.toLowerCase().includes(search.text.toLowerCase())) {
+                                return entry;
+                            }
+                        }).filter(entry => entry != null).sort()
                     }
                     delegate: Text {
+                        id: text
                         color: Theme.base05
                         required property var modelData
-                        text: modelData
+                        text: modelData.name
                     }
                 }
             }
@@ -61,7 +73,6 @@ Item {
             target: root.shortcut
             function onPressed() {
                 window.visible = !window.visible;
-                search.forceActiveFocus();
                 search.clear();
             }
         }
