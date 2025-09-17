@@ -20,7 +20,7 @@ Item {
 
         Image {
             id: image
-            source: Qt.resolvedUrl("alps.png")
+            source: Qt.resolvedUrl("wallpaper.png")
             anchors.fill: parent
         }
     }
